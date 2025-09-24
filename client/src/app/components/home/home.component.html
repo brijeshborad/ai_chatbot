@@ -1,0 +1,47 @@
+<div class="home-container">
+  <div class="welcome-card">
+    <div class="header">
+      <h1 class="title">Welcome to Skyllect</h1>
+      <!-- <p class="subtitle">Start a conversation with our intelligent assistant</p> -->
+    </div>
+    
+    <div class="input-section">
+      <div class="input-group">
+        <label for="userInput" class="input-label">What would you like to talk about?</label>
+        <textarea 
+          id="userInput"
+          [(ngModel)]="userInput" 
+          placeholder="Type your email here..."
+          class="text-input"
+          rows="1"
+          (keydown)="onKeyPress($event)"
+        ></textarea>
+        <small class="input-hint">{{errMsg}}</small>
+      </div>
+      
+      <button 
+        (click)="onStartChat()" 
+        class="start-chat-btn"
+        [class.has-content]="userInput.trim().length > 0"
+      >
+        <span class="btn-icon">💬</span>
+        {{ userInput.trim() ? 'Start Chat' : 'Enter Your Email' }}
+      </button>
+    </div>
+    
+    <div class="features">
+      <!-- <div class="feature-item">
+        <span class="feature-icon">🤖</span>
+        <span>AI-Powered Conversations</span>
+      </div> -->
+      <div class="feature-item">
+        <span class="feature-icon">⚡</span>
+        <span>Fast Response Times</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🔒</span>
+        <span>Secure & Private</span>
+      </div>
+    </div>
+  </div>
+</div>

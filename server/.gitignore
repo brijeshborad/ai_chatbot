@@ -1,0 +1,5 @@
+**__pycache__**
+/app/finetuned_model/*
+chat_history.db
+.env
+venv

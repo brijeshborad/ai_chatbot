@@ -1,0 +1,65 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <button class="back-btn" (click)="goHome()">
+      <span class="back-icon">←</span>
+      Home
+    </button>
+    <div class="chat-title">
+      <h2>Skyllect Assistant</h2>
+      <span class="status-indicator">Online</span>
+    </div>
+    <button class="new-chat-btn" (click)="startNewChat()">
+      <span class="new-chat-icon">+</span>
+      New Chat
+    </button>
+  </div>
+
+  <div class="messages-container" #messagesContainer>
+    <div class="messages-list">
+      <div 
+        *ngFor="let message of messages" 
+        class="message"
+        [class.user-message]="message.isUser"
+        [class.ai-message]="!message.isUser"
+      >
+        <div class="message-bubble">
+          <div class="message-text">{{ message.text }}</div>
+          <div class="message-time">
+            {{ message.timestamp | date:'short' }}
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="isTyping" class="message ai-message typing-indicator">
+        <div class="message-bubble">
+          <div class="typing-animation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-container">
+    <div class="input-wrapper">
+      <textarea 
+        [(ngModel)]="currentMessage"
+        (keydown)="onKeyPress($event)"
+        placeholder="Type your message here..."
+        class="message-input"
+        rows="1"
+        [disabled]="isTyping"
+      ></textarea>
+      <button 
+        (click)="sendMessage()"
+        class="send-btn"
+        [disabled]="!currentMessage.trim() || isTyping"
+      >
+        <span class="send-icon">→</span>
+      </button>
+    </div>
+    <small class="input-hint">Press Enter to send, Shift+Enter for new line</small>
+  </div>
+</div>
