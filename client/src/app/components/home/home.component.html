@@ -1,47 +1,159 @@
-<div class="home-container">
-  <div class="welcome-card">
-    <div class="header">
-      <h1 class="title">Welcome to Skyllect</h1>
-      <!-- <p class="subtitle">Start a conversation with our intelligent assistant</p> -->
+<nav class="navbar">
+  <div class="nav-content">
+    <div class="logo">
+      <span class="logo-icon">✨</span>
+      Skyllect Assistant
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#login-section" class="login-link" (click)="$event.preventDefault(); scrollToLogin()">Login</a>
+      <button class="nav-cta" (click)="scrollToLogin()">Start Chat</button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">Turn Your Idea Into a <br/><span class="gradient-text">Software Plan</span></h1>
+      <p class="hero-subtitle">Describe your idea. Our AI consultant will ask the right questions and turn it into clear project requirements.</p>
+      
+      <ul class="hero-bullets">
+        <li><span class="bullet-icon">✓</span> Feels like talking to a real consultant</li>
+        <li><span class="bullet-icon">✓</span> Clarifies your project scope</li>
+        <li><span class="bullet-icon">✓</span> Saves hours of requirement discussions</li>
+      </ul>
+
+      <div class="hero-ctas">
+        <button class="primary-btn" (click)="scrollToLogin()">Start Your Project Chat</button>
+        <button class="secondary-btn" (click)="scrollToLogin()">See how it works</button>
+      </div>
     </div>
     
-    <div class="input-section">
-      <div class="input-group">
-        <label for="userInput" class="input-label">What would you like to talk about?</label>
-        <textarea 
-          id="userInput"
-          [(ngModel)]="userInput" 
-          placeholder="Type your email here..."
-          class="text-input"
-          rows="1"
-          (keydown)="onKeyPress($event)"
-        ></textarea>
-        <small class="input-hint">{{errMsg}}</small>
+    <div class="hero-visual">
+      <!-- Chat Preview Card -->
+      <div class="chat-preview">
+        <div class="chat-header">
+          <div class="chat-dot red"></div>
+          <div class="chat-dot yellow"></div>
+          <div class="chat-dot green"></div>
+          <span class="chat-title">Skyllect AI Consultant</span>
+        </div>
+        <div class="chat-body">
+          <div class="message user-msg">
+            <div class="msg-bubble">I want to build a mobile app</div>
+          </div>
+          <div class="message ai-msg">
+            <div class="msg-avatar">✨</div>
+            <div class="msg-bubble">Great. Is this an iOS app, Android app, or both?</div>
+          </div>
+          <div class="message user-msg">
+            <div class="msg-bubble">It should include payments and user accounts.</div>
+          </div>
+          <div class="message ai-msg">
+            <div class="msg-avatar">✨</div>
+            <div class="msg-bubble">Understood. Do you expect high user traffic or a smaller initial launch?</div>
+          </div>
+        </div>
       </div>
       
-      <button 
-        (click)="onStartChat()" 
-        class="start-chat-btn"
-        [class.has-content]="userInput.trim().length > 0"
-      >
-        <span class="btn-icon">💬</span>
-        {{ userInput.trim() ? 'Start Chat' : 'Enter Your Email' }}
-      </button>
-    </div>
-    
-    <div class="features">
-      <!-- <div class="feature-item">
-        <span class="feature-icon">🤖</span>
-        <span>AI-Powered Conversations</span>
-      </div> -->
-      <div class="feature-item">
-        <span class="feature-icon">⚡</span>
-        <span>Fast Response Times</span>
-      </div>
-      <div class="feature-item">
-        <span class="feature-icon">🔒</span>
-        <span>Secure & Private</span>
+      <!-- Login Controller Floating Card -->
+      <div id="login-section" class="floating-login-card">
+        <div class="login-header">
+          <h3>Ready to start?</h3>
+          <p>Enter your email to begin your consultation.</p>
+        </div>
+        <div class="input-section">
+          <div class="input-group">
+            <label for="userInput" class="input-label">Email Address</label>
+            <input 
+              type="email"
+              id="userInput"
+              [(ngModel)]="userInput" 
+              placeholder="name@company.com"
+              class="text-input"
+              (keydown)="onKeyPress($event)"
+            />
+            <small class="input-hint" *ngIf="errMsg">{{errMsg}}</small>
+            <small class="input-hint" *ngIf="!errMsg">&nbsp;</small>
+          </div>
+          
+          <button 
+            (click)="onStartChat()" 
+            class="start-chat-btn"
+            [class.has-content]="userInput.trim().length > 0"
+          >
+            <span class="btn-icon">💬</span>
+            {{ userInput.trim() ? 'Start Chat' : 'Enter Your Email' }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<section id="features" class="problem-section">
+  <div class="section-container">
+    <h2 class="section-title">Why Requirement Discovery Is Hard</h2>
+    <div class="cards-grid">
+      <div class="problem-card">
+        <div class="card-icon">🤔</div>
+        <h3>Ideas are vague</h3>
+        <p>People know what they want but struggle to explain it clearly in technical terms.</p>
+      </div>
+      <div class="problem-card">
+        <div class="card-icon">🏗️</div>
+        <h3>Developers ask technical questions</h3>
+        <p>Most clients don't understand architecture decisions or platform constraints.</p>
+      </div>
+      <div class="problem-card">
+        <div class="card-icon">⏳</div>
+        <h3>Consultation takes days</h3>
+        <p>Multiple back-and-forth calls and emails just to define the initial scope.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" class="solution-section">
+  <div class="section-container">
+    <h2 class="section-title">AI That Thinks Like a Project Consultant</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3>Describe your idea</h3>
+        <p>Start a chat and explain your concept just like you would to a human project manager.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3>AI asks smart questions</h3>
+        <p>The assistant actively gathers necessary technical and functional requirements from you.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3>Clear project understanding</h3>
+        <p>You get structured insights into your software idea ready to hand off for development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="cta-content">
+    <h2>Ready to turn your idea into a real project?</h2>
+    <p>Start a conversation with the Skyllect AI consultant today.</p>
+    <button class="primary-btn large-btn" (click)="scrollToLogin()">Start Chat</button>
+  </div>
+  <div class="bg-glow"></div>
+</section>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="logo">
+      <span class="logo-icon">✨</span>
+      Skyllect Assistant
+    </div>
+    <p class="copyright">© 2026 Skyllect. All rights reserved.</p>
+  </div>
+</footer>

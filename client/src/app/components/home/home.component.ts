@@ -40,6 +40,17 @@ export class HomeComponent {
     private router: Router, 
     private userInputService: UserInputService,
     private apiService: APIService) {}
+
+    scrollToLogin() {
+        const loginSection = document.getElementById('login-section');
+        if (loginSection) {
+            loginSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const input = document.getElementById('userInput');
+            if (input) {
+                setTimeout(() => input.focus(), 100);
+            }
+        }
+    }
   
     private isValidEmail(email: string): boolean {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
